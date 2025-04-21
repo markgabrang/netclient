@@ -20,4 +20,7 @@ COPY --from=builder /app/netclient-app ./netclient
 COPY --from=builder /app/scripts/netclient.sh .
 RUN chmod 0755 netclient && chmod 0755 netclient.sh
 
+RUN apk add tzdata
+RUN ln -s /usr/share/zoneinfo/Asia/Manila /etc/localtime
+
 ENTRYPOINT ["/bin/bash", "./netclient.sh"]
